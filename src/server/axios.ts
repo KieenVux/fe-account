@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-const baseURL = "http://14.225.192.54:8080/api/v1/";
+const baseURL = import.meta.env.VITE_ROOT_URL;
 type Controller = {
   account: undefined;
   login: undefined;
@@ -18,6 +18,7 @@ export class Axios<T> {
 
   create(controller: keyof Controller) {
     this.instance = axios.create({ baseURL: baseURL + controller });
+    console.log(baseURL);
   }
   createAuth(controller: keyof Controller, token: string) {
     this.instance = axios.create({
